@@ -54,4 +54,25 @@ class Model_User extends PhalApi_Model_NotORM
 
         return $this->getORM()->order("useraddtime desc")->fetchAll();
     }
+    /**
+     * 通过用户ID更新签名
+     */
+    public function setSignByuId($userid,$sign) {
+
+//        return $this->getORM()->where("userid", $userid);
+        $rs = $this->getORM()->where('userid', $userid)->update(array(
+            'sign' => $sign
+        ));
+        if ($rs >= 1) {
+            //成功
+            return $rs;
+        } else if ($rs === 0) {
+            //相同数据，无更新
+            return $rs;
+        } else if ($rs === false) {
+            //更新失败
+            return $rs;
+        }
+
+    }
 }

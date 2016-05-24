@@ -65,5 +65,14 @@ class Domain_User {
         }
         return $userList;
     }
+    /**
+     * 更新用户签名
+     */
+    public function setusersign($userid,$sign) {
+        $Model_User = new Model_User();
+        $sign        = $Model_User->setSignByuId($userid,$sign);
+        return $sign;
+
+    }
 
 }

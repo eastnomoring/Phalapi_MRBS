@@ -26,6 +26,12 @@ class Api_User extends PhalApi_Api
             ),
             //获取用户列表
             'getuserlist' => array(),
+
+            //更新用户签名
+            'setusersign' => array(
+                'userid' => array('name' => 'userid', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),
+                'sign' => array('name' => 'sign', 'type' => 'string', 'min' => 0, 'max' => 200,'require' => true, 'desc' => '用户签名'),
+            ),
         );
     }
 
@@ -61,11 +67,20 @@ class Api_User extends PhalApi_Api
     }
 
     /**
-     * 或去用户列表
+     * 获取用户列表
      */
     public function getuserlist() {
         $Domain_User = new  Domain_User();
         return $Domain_User->getuserlist();
+    }
+    /**
+     * 更新用户签名
+     */
+    public function setusersign() {
+
+        $Domain_User = new  Domain_User();
+        return $Domain_User->setusersign($this->userid,$this->sign);
+
     }
 
 }
