@@ -11,7 +11,7 @@ class Api_User extends PhalApi_Api
             //用户注册
             'useradd' => array(
                 'username' => array('name' => 'username', 'type' => 'string', 'min' => 6, 'max' => 25, 'require' => true, 'desc' => '用户登录名'),
-                'userpass' => array('name' => 'userpass', 'type' => 'string', 'min' => 6, 'max' => 25, 'require' => true, 'desc' => '用户登录密码'),
+                'userpass' => array('name' => 'userpass', 'type' => 'string', 'min' => 6, 'max' => 22, 'require' => true, 'desc' => '用户登录密码'),
                 'phone' => array('name' => 'phone', 'type' => 'string', 'min' => 11, 'max' => 11, 'require' => true, 'desc' => '用户登录密码'),
 
             ),
