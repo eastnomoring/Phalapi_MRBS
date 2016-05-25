@@ -22,7 +22,8 @@ class Model_Book extends PhalApi_Model_NotORM{
             'email' => $data->email,
             'roomnote' => $data->roomnote,
             'status' => 0,
-            'bookaddtime' => time()
+            'bookaddtime' => time(),
+            'roomname' => $data->roomname,
         ));
     }
     /**
@@ -40,6 +41,13 @@ class Model_Book extends PhalApi_Model_NotORM{
             ->where("hour_end", $data->hour_end)
             ->where("minute_end", $data->minute_end)
             ->fetch();
+    }
+    /**
+     * 通过用户ID获取预约详情列表
+     */
+    public function getInfoByuId($userid) {
+
+        return $this->getORM()->where("userid", $userid)->order("bookaddtime desc")->fetchAll();
     }
 
 

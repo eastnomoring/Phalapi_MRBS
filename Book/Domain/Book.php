@@ -23,4 +23,16 @@ class Domain_Book{
             throw new PhalApi_Exception_BadRequest("您曾使用相同的 时间段 申请过此会议室", -1);
         }
     }
+    /**
+     * 获取用户预约详情列表
+     */
+    public function getuserinfo($userid) {
+
+        $Model_Book = new Model_Book();
+        $userid        = $Model_Book->getInfoByuId($userid);
+        if (!$userid) {
+            throw new PhalApi_Exception_BadRequest(T("此用户没有预约记录"), -1);
+        }
+        return $userid;
+    }
 }

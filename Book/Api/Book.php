@@ -21,6 +21,11 @@ class Api_Book extends PhalApi_Api
                 'phone' => array('name' => 'phone', 'type' => 'string', 'min' => 11, 'max' => 11, 'require' => false, 'desc' => '用户预约手机号'),
                 'email' => array('name' => 'email', 'type' => 'string', 'min' => 4, 'max' => 50, 'require' => false, 'desc' => '用户预约Email'),
                 'roomnote' => array('name' => 'roomnote', 'type' => 'string', 'min' => 0, 'max' => 500, 'require' => false, 'desc' => '会议内容'),
+                'roomname' => array('name' => 'roomname', 'type' => 'string', 'min' => 7, 'max' => 7, 'require' => true, 'desc' => '会议室名称')
+            ),
+            //根据用户ID获取预约详情
+            'getbookinfo' => array(
+                'userid' => array('name' => 'userid', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),
             ),
         );
     }
@@ -36,9 +41,13 @@ class Api_Book extends PhalApi_Api
         //创建用户的信息
         return $Domain_Book->bookadd($this);
     }
-
-
-
+    /**
+     * 获取用户预约详情列表
+     */
+    public function getbookinfo() {
+        $Domain_Book = new  Domain_Book();
+        return $Domain_Book->getuserinfo($this->userid);
+    }
 
 
 }
