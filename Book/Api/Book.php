@@ -25,7 +25,11 @@ class Api_Book extends PhalApi_Api
             ),
             //根据用户ID获取预约详情
             'getbookinfo' => array(
-                'userid' => array('name' => 'userid', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),
+                'userid' => array('name' => 'userid', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),                
+            ),
+            //根据会议室ID获取预约详情
+            'getroominfo' => array(
+                'roomid' => array('name' => 'roomid', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '会议室ID'),
             ),
         );
     }
@@ -47,6 +51,13 @@ class Api_Book extends PhalApi_Api
     public function getbookinfo() {
         $Domain_Book = new  Domain_Book();
         return $Domain_Book->getuserinfo($this->userid);
+    }
+    /**
+     * 根据roomID获取预约详情列表
+     */
+    public function getroominfo() {
+        $Domain_Book = new  Domain_Book();
+        return $Domain_Book->getroominfo($this->roomid);
     }
 
 

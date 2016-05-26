@@ -35,4 +35,16 @@ class Domain_Book{
         }
         return $userid;
     }
+    /**
+     * 获取某会议室预约详情列表
+     */
+    public function getroominfo($roomid) {
+
+        $Model_Book = new Model_Book();
+        $roomid        = $Model_Book->getInfoByrId($roomid);
+        if (!$roomid) {
+            throw new PhalApi_Exception_BadRequest(T("此会议室根本没有预约记录"), -1);
+        }
+        return $roomid;
+    }
 }
