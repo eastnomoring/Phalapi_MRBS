@@ -63,6 +63,35 @@ class Model_Book extends PhalApi_Model_NotORM{
 
         return $this->getORM()->order("bookaddtime desc")->fetchAll();
     }
+    /**
+     * 修改预约状态
+     */
+    public function setStatus($data) {
+
+        $rs = $this->getORM()->
+        where('roomid', $data->roomid)->
+        where('userid', $data->userid)->
+        where('year', $data->year)->
+        where('month', $data->month)->
+        where('day', $data->day)->
+        where('hour_start', $data->hour_start)->
+        where('minute_start', $data->minute_start)->
+        where('hour_end', $data->hour_end)->
+        where('minute_end', $data->minute_end)->update(array(
+            'status' => 1
+        ));
+        if ($rs >= 1) {
+            //成功
+            return $rs;
+        } else if ($rs === 0) {
+            //相同数据，无更新
+            return $rs;
+        } else if ($rs === false) {
+            //更新失败
+            return $rs;
+        }
+
+    }
 
 
 }

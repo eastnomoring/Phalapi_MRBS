@@ -33,6 +33,18 @@ class Api_Book extends PhalApi_Api
             ),
             //获取所有预约记录供管理员确认
             'getallbookinfo' => array(),
+            //修改预约状态
+            'setbookstatus' => array(
+                'roomid' => array('name' => 'roomid', 'type' => 'int', 'min' => 1,  'require' => true, 'desc' => '会议室ID'),
+                'userid' => array('name' => 'userid', 'type' => 'int', 'min' => 1,  'require' => true, 'desc' => '用户ID'),
+                'year' => array('name' => 'year', 'type' => 'int', 'min' => 1000, 'max' => 9999, 'require' => true, 'desc' => '预约年'),
+                'month' => array('name' => 'month', 'type' => 'int', 'min' => 1, 'max' => 12, 'require' => true, 'desc' => '预约月'),
+                'day' => array('name' => 'day', 'type' => 'int', 'min' =>1, 'max' => 31, 'require' => true, 'desc' => '预约天'),
+                'hour_start' => array('name' => 'hour_start', 'type' => 'int', 'min' => 0, 'max' => 23, 'require' => true, 'desc' => '预约开始小时'),
+                'minute_start' => array('name' => 'minute_start', 'type' => 'int', 'min' => 0, 'max' => 59, 'require' => true, 'desc' => '预约开始分钟'),
+                'hour_end' => array('name' => 'hour_end', 'type' => 'int', 'min' => 0, 'max' => 23, 'require' => true, 'desc' => '预约结束小时'),
+                'minute_end' => array('name' => 'minute_end', 'type' => 'int', 'min' => 0, 'max' => 59, 'require' => true, 'desc' => '预约结束分钟'),
+                ),
         );
     }
 
@@ -68,6 +80,13 @@ class Api_Book extends PhalApi_Api
     public function getallbookinfo() {
         $Domain_Book = new  Domain_Book();
         return $Domain_Book->getallbookinfo();
+    }
+    /**
+     * 设置预约状态
+     */
+    public function setbookstatus() {
+        $Domain_Book = new  Domain_Book();
+        return $Domain_Book->setbookstatus($this);
     }
 
 

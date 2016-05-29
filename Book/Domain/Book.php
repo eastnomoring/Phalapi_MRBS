@@ -59,4 +59,13 @@ class Domain_Book{
         }
         return $bookList;
     }
+    /**
+     * 更新预约状态
+     */
+    public function setbookstatus($data) {
+        $Model_Book = new Model_Book();
+        $status        = $Model_Book->setStatus($data);
+        return $status;
+
+    }
 }
