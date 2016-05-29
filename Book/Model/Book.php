@@ -56,7 +56,13 @@ class Model_Book extends PhalApi_Model_NotORM{
 
         return $this->getORM()->where("roomid", $roomid)->order("bookaddtime desc")->fetchAll();
     }
+    /**
+     * 获取所有预约详情列表
+     */
+    public function getAllInfo() {
 
+        return $this->getORM()->order("bookaddtime desc")->fetchAll();
+    }
 
 
 }

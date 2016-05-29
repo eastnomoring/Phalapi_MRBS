@@ -47,4 +47,16 @@ class Domain_Book{
         }
         return $roomid;
     }
+    /**
+     * 获取所有预约记录列表
+     */
+    public function getallbookinfo() {
+
+        $Model_Book = new Model_Book();
+        $bookList   = $Model_Book->getAllInfo();
+        if (!$bookList) {
+            throw new PhalApi_Exception_BadRequest(T("No List"), -1);
+        }
+        return $bookList;
+    }
 }
